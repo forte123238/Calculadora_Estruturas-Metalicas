@@ -104,6 +104,7 @@
     <label for="tipoTelha">Selecione a Telha:</label>
     <select id="tipoTelha">
       <optgroup label="Telhas de Zinco Trapezoidais">
+      
         <option value="1.8x0.8">Selecione o tipo de telha </option>
 
         <option value="1.8x0.8">Telhas de Zinco Trapezoidais 1 (1,8x0,8 cm)</option>
