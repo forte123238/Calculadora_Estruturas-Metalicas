@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8">
@@ -171,6 +172,8 @@
     <label for="tipoTelha">Selecione a Telha:</label>
     <select id="tipoTelha">
       <optgroup label="Telhas de Zinco Trapezoidais">
+        <option value="1.8x0.8">Selecione o tamanho e tipo de Telha ()</option>
+
         <option value="1.8x0.8">Telhas de Zinco Trapezoidais 1 (1,8x0,8 cm)</option>
         <option value="2.0x0.8">Telhas de Zinco Trapezoidais 2 (2,0x0,80 cm)</option>
         <option value="3.0x0.8">Telhas de Zinco Trapezoidais 3 (3,0x0,80 cm)</option>
