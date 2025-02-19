@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8">
@@ -77,6 +78,69 @@
       color: #007BFF;
       text-decoration: none;
     }
+
+
+ /* Estilos para dispositivos móveis */
+    @media (max-width: 768px) {
+      h1 {
+        font-size: 20px;
+      }
+      .container {
+        padding: 5px;
+      }
+      label {
+        font-size: 14px;
+      }
+      input, select, button {
+        font-size: 14px;
+        padding: 8px;
+      }
+      button {
+        font-size: 14px;
+      }
+      .whatsapp-button {
+        font-size: 14px;
+        padding: 8px 16px;
+      }
+      .instagram-link {
+        font-size: 14px;
+      }
+      .resultado {
+        padding: 8px;
+      }
+    }
+
+    /* Estilos para smartphones pequenos */
+    @media (max-width: 480px) {
+      h1 {
+        font-size: 18px;
+      }
+      .container {
+        padding: 0;
+      }
+      label {
+        font-size: 12px;
+      }
+      input, select, button {
+        font-size: 12px;
+        padding: 6px;
+      }
+      button {
+        font-size: 12px;
+      }
+      .whatsapp-button {
+        font-size: 12px;
+        padding: 6px 12px;
+      }
+      .instagram-link {
+        font-size: 12px;
+      }
+      .resultado {
+        padding: 6px;
+      }
+
+ }
+
   </style>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 </head>
@@ -104,7 +168,6 @@
     <label for="tipoTelha">Selecione a Telha:</label>
     <select id="tipoTelha">
       <optgroup label="Telhas de Zinco Trapezoidais">
-      
         <option value="1.8x0.8">Selecione o tipo de telha </option>
 
         <option value="1.8x0.8">Telhas de Zinco Trapezoidais 1 (1,8x0,8 cm)</option>
