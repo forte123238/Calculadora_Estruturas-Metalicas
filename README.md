@@ -315,16 +315,31 @@
       `;
     }
 
+    // Função para gerar número de pedido crescente
+    function gerarNumeroPedido() {
+      let ultimoPedido = localStorage.getItem("ultimoPedido");
+      if (!ultimoPedido) {
+        ultimoPedido = 1000; // Inicia a partir de 1000
+      } else {
+        ultimoPedido = parseInt(ultimoPedido) + 1; // Incrementa o número do pedido
+      }
+      localStorage.setItem("ultimoPedido", ultimoPedido);
+      return ultimoPedido;
+    }
+
     // Função para gerar PDF
     function gerarPDF() {
       const { jsPDF } = window.jspdf;
       const doc = new jsPDF();
 
-      // Adicionar logotipo
+      // Adicionar logotipo no canto superior esquerdo
       const logoUrl = "https://gabriellemoreira.com.br/wp-content/uploads/2025/02/braco-forte.jpeg";
-      const logoWidth = 50;
-      const logoHeight = 20;
+      const logoWidth = 30; // Reduzi o tamanho para caber melhor no PDF
+      const logoHeight = 15;
       doc.addImage(logoUrl, "JPEG", 10, 10, logoWidth, logoHeight);
+
+      // Gerar número de pedido
+      const numeroPedido = gerarNumeroPedido();
 
       // Título
       doc.setFontSize(18);
@@ -337,13 +352,17 @@
       doc.text("Orçamentos: (21) 98130-4519 grátis!", 10, 60);
       doc.text("Instagram: @bracofortecoberturas", 10, 70);
 
+      // Número do Pedido
+      doc.setFontSize(14);
+      doc.text(`Número do Pedido: ${numeroPedido}`, 10, 90);
+
       // Dados do Orçamento
       doc.setFontSize(14);
-      doc.text("Detalhes do Orçamento:", 10, 90);
+      doc.text("Detalhes do Orçamento:", 10, 110);
       doc.setFontSize(12);
-      doc.text(`Área do telhado: ${document.getElementById("areaTotal").textContent} m²`, 10, 100);
-      doc.text(`Quantidade de telhas: ${document.getElementById("quantidadeTelhas").textContent}`, 10, 110);
-      doc.text(`Valor total: R$ ${document.getElementById("valorTotal").textContent}`, 10, 120);
+      doc.text(`Área do telhado: ${document.getElementById("areaTotal").textContent} m²`, 10, 120);
+      doc.text(`Quantidade de telhas: ${document.getElementById("quantidadeTelhas").textContent}`, 10, 130);
+      doc.text(`Valor total: R$ ${document.getElementById("valorTotal").textContent}`, 10, 140);
 
       // Salvar o PDF e abrir em uma nova aba
       const pdfBlob = doc.output("blob");
@@ -356,4 +375,3 @@
   </script>
 </body>
 </html>
-
