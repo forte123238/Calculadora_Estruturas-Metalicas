@@ -11,14 +11,17 @@
     }
     h1 {
       color: #333;
+      font-size: 24px;
     }
     .container {
       max-width: 600px;
       margin: 0 auto;
+      padding: 10px;
     }
     label {
       display: block;
       margin-top: 10px;
+      font-size: 16px;
     }
     input, select, button {
       width: 100%;
@@ -27,11 +30,13 @@
       margin-bottom: 10px;
       border: 1px solid #ccc;
       border-radius: 5px;
+      font-size: 16px;
     }
     button {
       background-color: #007BFF;
       color: white;
       cursor: pointer;
+      font-size: 16px;
     }
     button:hover {
       background-color: #0056b3;
@@ -53,9 +58,9 @@
       margin-top: 10px;
     }
     .logo {
-      max-width: 450px;
-      margin: 0 auto 20px; /* Centraliza o logotipo */
-      display: block; /* Garante que a margem automática funcione */
+      max-width: 150px;
+      margin: 0 auto 20px;
+      display: block;
     }
     .whatsapp-button {
       background-color: #25D366;
@@ -64,7 +69,8 @@
       border-radius: 5px;
       text-decoration: none;
       display: inline-block;
-      margin-top: 20px; /* Aumenta a margem superior para posicionar abaixo do botão de PDF */
+      margin-top: 20px;
+      font-size: 16px;
       animation: piscar 1.5s infinite;
     }
     @keyframes piscar {
@@ -76,10 +82,10 @@
       margin-top: 10px;
       color: #007BFF;
       text-decoration: none;
+      font-size: 16px;
     }
 
-
- /* Estilos para dispositivos móveis */
+    /* Estilos para dispositivos móveis */
     @media (max-width: 768px) {
       h1 {
         font-size: 20px;
@@ -137,9 +143,7 @@
       .resultado {
         padding: 6px;
       }
-
- }
-
+    }
   </style>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 </head>
@@ -167,8 +171,6 @@
     <label for="tipoTelha">Selecione a Telha:</label>
     <select id="tipoTelha">
       <optgroup label="Telhas de Zinco Trapezoidais">
-        <option value="1.8x0.8">Selecione o tipo de telha </option>
-
         <option value="1.8x0.8">Telhas de Zinco Trapezoidais 1 (1,8x0,8 cm)</option>
         <option value="2.0x0.8">Telhas de Zinco Trapezoidais 2 (2,0x0,80 cm)</option>
         <option value="3.0x0.8">Telhas de Zinco Trapezoidais 3 (3,0x0,80 cm)</option>
@@ -179,7 +181,6 @@
         <option value="12.0x0.8">Telhas de Zinco Trapezoidais 8 (12,0x0,80 cm)</option>
       </optgroup>
       <optgroup label="Telhas de Zinco Onduladas">
-
         <option value="1.8x0.8">Telhas de Zinco Onduladas 1 (1,8x0,80 cm)</option>
         <option value="2.0x0.8">Telhas de Zinco Onduladas 2 (2,0x0,80 cm)</option>
         <option value="3.0x0.8">Telhas de Zinco Onduladas 3 (3,0x0,80 cm)</option>
@@ -355,3 +356,4 @@
   </script>
 </body>
 </html>
+
