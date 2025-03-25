@@ -1,4 +1,3 @@
-<!DOCTYPE html>
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8">
@@ -156,6 +155,13 @@
     <h1>Orçamento <p>Calculadora de Coberturas</p> </h1>
     <p><strong>EMPRESA DE COBERTURAS DE AÇOS DO KELVYN</strong></p>
 
+    <!-- Campos do cliente -->
+    <label for="nomeCliente">Nome Completo (máx. 30 caracteres):</label>
+    <input type="text" id="nomeCliente" maxlength="30" placeholder="Digite seu nome completo">
+
+    <label for="telefoneCliente">Telefone:</label>
+    <input type="text" id="telefoneCliente" placeholder="00-00000-0000" pattern="\d{2}-\d{5}-\d{4}">
+
     <!-- Filtro de Tipo de Cobertura -->
     <label for="tipoCobertura">Tipo de Cobertura:</label>
     <select id="tipoCobertura">
@@ -218,6 +224,7 @@
       <p>Valor total: R$ <span id="valorTotal">0,00</span></p>
       <p id="detalhesSobreposicao"></p>
       <button onclick="gerarPDF()">Clique para Imprimir seu Orçamento em PDF</button>
+      <button onclick="enviarWhatsApp()" style="background-color: #25D366; margin-top: 10px;">Enviar Orçamento via WhatsApp</button>
     </div>
 
     <!-- Botão do WhatsApp -->
@@ -239,6 +246,18 @@
       trapezoidal: "https://gabriellemoreira.com.br/wp-content/uploads/2025/02/Captura-de-Tela-2025-02-19-as-01.02.31.png",
       ondulada: "https://gabriellemoreira.com.br/wp-content/uploads/2025/02/Captura-de-Tela-2025-02-19-as-01.11.18.png"
     };
+
+    // Formatador de telefone
+    document.getElementById('telefoneCliente').addEventListener('input', function (e) {
+      let value = e.target.value.replace(/\D/g, '');
+      if (value.length > 2) {
+        value = value.substring(0, 2) + '-' + value.substring(2);
+      }
+      if (value.length > 8) {
+        value = value.substring(0, 8) + '-' + value.substring(8, 12);
+      }
+      e.target.value = value;
+    });
 
     // Atualizar imagem ao selecionar o tipo de cobertura
     document.getElementById("tipoCobertura").addEventListener("change", function () {
@@ -374,6 +393,55 @@
       if (!newWindow) {
         alert("Por favor, permita pop-ups para visualizar o PDF.");
       }
+    }
+
+    // Função para enviar orçamento via WhatsApp
+    function enviarWhatsApp() {
+      const nomeCliente = document.getElementById("nomeCliente").value;
+      const telefoneCliente = document.getElementById("telefoneCliente").value;
+      
+      if (!nomeCliente || !telefoneCliente) {
+        alert("Por favor, preencha seu nome e telefone antes de enviar o orçamento.");
+        return;
+      }
+
+      const numeroPedido = gerarNumeroPedido();
+      const areaTotal = document.getElementById("areaTotal").textContent;
+      const quantidadeTelhas = document.getElementById("quantidadeTelhas").textContent;
+      const valorTotal = document.getElementById("valorTotal").textContent;
+      const tipoCobertura = document.getElementById("tipoCobertura").options[document.getElementById("tipoCobertura").selectedIndex].text;
+      const tipoTelha = document.getElementById("tipoTelha").options[document.getElementById("tipoTelha").selectedIndex].text;
+
+      // Montar mensagem
+      let mensagem = `*Orçamento de Coberturas*\n\n`;
+      mensagem += `Boa tarde, segue meu orçamento, fico no aguardo da resposta para fecharmos negócio:\n\n`;
+      mensagem += `*Nome do Cliente:* ${nomeCliente}\n`;
+      mensagem += `*Telefone:* ${telefoneCliente}\n\n`;
+      mensagem += `*Número do Pedido:* ${numeroPedido}\n`;
+      mensagem += `*Detalhes do Orçamento:*\n`;
+      mensagem += `- Tipo de Cobertura: ${tipoCobertura}\n`;
+      mensagem += `- Tipo de Telha: ${tipoTelha}\n`;
+      mensagem += `- Área do telhado: ${areaTotal} m²\n`;
+      mensagem += `- Quantidade de telhas: ${quantidadeTelhas}\n`;
+      mensagem += `- Valor total: R$ ${valorTotal}\n\n`;
+      mensagem += `----------------------------\n`;
+      mensagem += `*DADOS DA COTADA:*\n`;
+      mensagem += `EMPRESA DE COBERTURAS DE AÇOS DO KELVYN\n`;
+      mensagem += `Rua Doutor Lucio Machado 15, São João de Meriti\n`;
+      mensagem += `Orçamentos: (21) 98130-4519 grátis!\n`;
+      mensagem += `Instagram: @bracofortecoberturas`;
+
+      // Codificar a mensagem para URL
+      const mensagemCodificada = encodeURIComponent(mensagem);
+      
+      // Número de WhatsApp da empresa
+      const numeroWhatsApp = "5521981304519";
+      
+      // Criar link do WhatsApp
+      const urlWhatsApp = `https://wa.me/${numeroWhatsApp}?text=${mensagemCodificada}`;
+      
+      // Abrir WhatsApp em nova aba
+      window.open(urlWhatsApp, '_blank');
     }
   </script>
 </body>
