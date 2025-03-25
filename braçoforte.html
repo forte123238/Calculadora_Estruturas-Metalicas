@@ -1,166 +1,214 @@
+<!DOCTYPE html>
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <title>Calculadora de Coberturas</title>
   <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      -webkit-text-size-adjust: 100%;
+    }
+    
     body {
       font-family: Arial, sans-serif;
-      margin: 20px;
+      line-height: 1.5;
+      color: #333;
+      background-color: #f5f5f5;
+      padding: 10px;
+    }
+    
+    .container {
+      max-width: 100%;
+      width: 100%;
+      margin: 0 auto;
+      background: white;
+      border-radius: 8px;
+      padding: 15px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+    
+    .logo {
+      max-width: 150px;
+      height: auto;
+      margin: 0 auto 15px;
+      display: block;
+    }
+    
+    h1 {
+      font-size: 1.5rem;
+      color: #333;
+      margin-bottom: 10px;
       text-align: center;
     }
-    h1 {
-      color: #333;
-      font-size: 24px;
+    
+    h1 p {
+      font-size: 1.2rem;
+      margin-top: 5px;
+      color: #555;
     }
-    .container {
-      max-width: 600px;
-      margin: 0 auto;
-      padding: 10px;
+    
+    .empresa-nome {
+      text-align: center;
+      font-weight: bold;
+      margin-bottom: 20px;
+      color: #444;
     }
+    
     label {
       display: block;
-      margin-top: 10px;
-      font-size: 16px;
+      margin-top: 15px;
+      margin-bottom: 5px;
+      font-size: 0.95rem;
+      color: #555;
     }
-    input, select, button {
+    
+    input, select {
       width: 100%;
-      padding: 10px;
-      margin-top: 5px;
-      margin-bottom: 10px;
-      border: 1px solid #ccc;
+      padding: 12px;
+      border: 1px solid #ddd;
       border-radius: 5px;
-      font-size: 16px;
+      font-size: 1rem;
+      margin-bottom: 5px;
+      background: #fff;
     }
+    
+    input:focus, select:focus {
+      border-color: #007BFF;
+      outline: none;
+    }
+    
     button {
+      width: 100%;
+      padding: 12px;
       background-color: #007BFF;
       color: white;
+      border: none;
+      border-radius: 5px;
+      font-size: 1rem;
+      margin-top: 10px;
       cursor: pointer;
-      font-size: 16px;
+      transition: background-color 0.3s;
     }
+    
     button:hover {
       background-color: #0056b3;
     }
-    .resultado {
-      margin-top: 20px;
-      padding: 10px;
-      background-color: #f9f9f9;
-      border: 1px solid #ddd;
+    
+    .imagem-cobertura, .imagem-telha {
+      max-width: 100%;
+      height: auto;
+      margin: 15px auto;
+      display: block;
       border-radius: 5px;
-      text-align: left;
     }
+    
     .hidden {
       display: none;
     }
-    img {
-      max-width: 100%;
-      height: auto;
-      margin-top: 10px;
+    
+    .resultado {
+      margin-top: 20px;
+      padding: 15px;
+      background-color: #f9f9f9;
+      border-radius: 5px;
+      border: 1px solid #eee;
     }
-    .logo {
-      max-width: 150px;
-      margin: 0 auto 20px;
-      display: block;
+    
+    .resultado p {
+      margin-bottom: 10px;
     }
+    
     .whatsapp-button {
+      display: block;
       background-color: #25D366;
       color: white;
-      padding: 10px 20px;
+      text-align: center;
+      padding: 12px;
       border-radius: 5px;
       text-decoration: none;
-      display: inline-block;
-      margin-top: 20px;
-      font-size: 16px;
+      margin: 20px auto;
+      font-size: 1rem;
       animation: piscar 1.5s infinite;
     }
+    
     @keyframes piscar {
       0%, 100% { opacity: 1; }
-      50% { opacity: 0.7; }
+      50% { opacity: 0.8; }
     }
+    
     .instagram-link {
       display: block;
-      margin-top: 10px;
+      text-align: center;
       color: #007BFF;
       text-decoration: none;
-      font-size: 16px;
+      margin: 10px auto;
+      font-size: 0.95rem;
     }
-
-    /* Estilos para dispositivos móveis */
-    @media (max-width: 768px) {
-      h1 {
-        font-size: 20px;
-      }
+    
+    /* Estilos específicos para mobile */
+    @media (max-width: 480px) {
       .container {
+        padding: 12px;
+      }
+      
+      h1 {
+        font-size: 1.3rem;
+      }
+      
+      h1 p {
+        font-size: 1.1rem;
+      }
+      
+      label {
+        font-size: 0.9rem;
+      }
+      
+      input, select, button {
+        padding: 10px;
+        font-size: 0.95rem;
+      }
+      
+      .logo {
+        max-width: 120px;
+      }
+    }
+    
+    @media (max-width: 360px) {
+      body {
         padding: 5px;
       }
-      label {
-        font-size: 14px;
-      }
-      input, select, button {
-        font-size: 14px;
-        padding: 8px;
-      }
-      button {
-        font-size: 14px;
-      }
-      .whatsapp-button {
-        font-size: 14px;
-        padding: 8px 16px;
-      }
-      .instagram-link {
-        font-size: 14px;
-      }
-      .resultado {
-        padding: 8px;
-      }
-    }
-
-    /* Estilos para smartphones pequenos */
-    @media (max-width: 480px) {
-      h1 {
-        font-size: 18px;
-      }
+      
       .container {
-        padding: 0;
+        padding: 10px;
       }
-      label {
-        font-size: 12px;
+      
+      h1 {
+        font-size: 1.2rem;
       }
+      
       input, select, button {
-        font-size: 12px;
-        padding: 6px;
-      }
-      button {
-        font-size: 12px;
-      }
-      .whatsapp-button {
-        font-size: 12px;
-        padding: 6px 12px;
-      }
-      .instagram-link {
-        font-size: 12px;
-      }
-      .resultado {
-        padding: 6px;
+        padding: 8px;
+        font-size: 0.9rem;
       }
     }
   </style>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 </head>
 <body>
   <div class="container">
-    <!-- Logotipo da Empresa -->
     <img src="https://gabriellemoreira.com.br/wp-content/uploads/2025/02/braco-forte.jpeg" alt="Logotipo da Empresa" class="logo">
 
-    <h1>Orçamento <p>Calculadora de Coberturas</p> </h1>
-    <p><strong>EMPRESA DE COBERTURAS DE AÇOS DO KELVYN</strong></p>
+    <h1>Orçamento <p>Calculadora de Coberturas</p></h1>
+    <p class="empresa-nome">EMPRESA DE COBERTURAS DE AÇOS DO KELVYN</p>
 
     <!-- Campos do cliente -->
     <label for="nomeCliente">Nome Completo (máx. 30 caracteres):</label>
     <input type="text" id="nomeCliente" maxlength="30" placeholder="Digite seu nome completo">
 
     <label for="telefoneCliente">Telefone:</label>
-    <input type="text" id="telefoneCliente" placeholder="00-00000-0000" pattern="\d{2}-\d{5}-\d{4}">
+    <input type="tel" id="telefoneCliente" placeholder="00-00000-0000" pattern="\d{2}-\d{5}-\d{4}">
 
     <!-- Filtro de Tipo de Cobertura -->
     <label for="tipoCobertura">Tipo de Cobertura:</label>
@@ -172,14 +220,13 @@
     </select>
 
     <!-- Imagem da Cobertura -->
-    <img id="imagemCobertura" src="" alt="Imagem do tipo de cobertura" class="hidden">
+    <img id="imagemCobertura" src="" alt="Imagem do tipo de cobertura" class="imagem-cobertura hidden">
 
     <!-- Filtro de Telhas -->
     <label for="tipoTelha">Selecione a Telha:</label>
     <select id="tipoTelha">
       <optgroup label="Telhas de Zinco Trapezoidais">
-        <option value="1.8x0.8">Selecione o tamanho e tipo de Telha ()</option>
-
+        <option value="1.8x0.8">Selecione o tamanho e tipo de Telha</option>
         <option value="1.8x0.8">Telhas de Zinco Trapezoidais 1 (1,8x0,8 cm)</option>
         <option value="2.0x0.8">Telhas de Zinco Trapezoidais 2 (2,0x0,80 cm)</option>
         <option value="3.0x0.8">Telhas de Zinco Trapezoidais 3 (3,0x0,80 cm)</option>
@@ -202,28 +249,28 @@
     </select>
 
     <!-- Imagem da Telha -->
-    <img id="imagemTelha" src="" alt="Imagem da telha selecionada" class="hidden">
+    <img id="imagemTelha" src="" alt="Imagem da telha selecionada" class="imagem-telha hidden">
 
     <!-- Campos de Metragem -->
     <label for="metragemA">A (m):</label>
-    <input type="number" id="metragemA" placeholder="Insira a metragem A">
+    <input type="number" id="metragemA" placeholder="Insira a metragem A" step="0.01" min="0">
 
     <label for="metragemB">B (m):</label>
-    <input type="number" id="metragemB" placeholder="Insira a metragem B">
+    <input type="number" id="metragemB" placeholder="Insira a metragem B" step="0.01" min="0">
 
     <label for="metragemC" class="hidden">C (m):</label>
-    <input type="number" id="metragemC" placeholder="Insira a metragem C" class="hidden">
+    <input type="number" id="metragemC" placeholder="Insira a metragem C" step="0.01" min="0" class="hidden">
 
     <!-- Botão de Calcular -->
     <button onclick="calcular()">Calcular</button>
 
     <!-- Resultado -->
-    <div class="resultado">
+    <div class="resultado hidden" id="resultado">
       <p>A superfície do telhado é: <span id="areaTotal">0</span> m²</p>
       <p>Você precisa: <span id="quantidadeTelhas">0</span> telhas</p>
       <p>Valor total: R$ <span id="valorTotal">0,00</span></p>
       <p id="detalhesSobreposicao"></p>
-      <button onclick="gerarPDF()">Clique para Imprimir seu Orçamento em PDF</button>
+      <button onclick="gerarPDF()">Imprimir Orçamento em PDF</button>
       <button onclick="enviarWhatsApp()" style="background-color: #25D366; margin-top: 10px;">Enviar Orçamento via WhatsApp</button>
     </div>
 
@@ -234,6 +281,7 @@
     <a href="https://www.instagram.com/bracofortecoberturas/" class="instagram-link" target="_blank">Siga-nos no Instagram</a>
   </div>
 
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
   <script>
     // URLs das imagens
     const imagensCobertura = {
@@ -291,9 +339,20 @@
     // Função para calcular área, quantidade de telhas e valor total
     function calcular() {
       const tipoCobertura = document.getElementById("tipoCobertura").value;
-      const metragemA = parseFloat(document.getElementById("metragemA").value);
-      const metragemB = parseFloat(document.getElementById("metragemB").value);
+      const metragemA = parseFloat(document.getElementById("metragemA").value) || 0;
+      const metragemB = parseFloat(document.getElementById("metragemB").value) || 0;
       const metragemC = parseFloat(document.getElementById("metragemC").value) || 0;
+
+      // Validar campos obrigatórios
+      if (metragemA <= 0 || metragemB <= 0) {
+        alert("Por favor, preencha as metragens A e B corretamente.");
+        return;
+      }
+
+      if (tipoCobertura === "duasAbasAssimetricas" && metragemC <= 0) {
+        alert("Por favor, preencha a metragem C para telhados com duas abas assimétricas.");
+        return;
+      }
 
       // Calcular área do telhado
       let areaTelhado;
@@ -335,6 +394,9 @@
         - Área útil de cada telha: ${areaUtilTelha.toFixed(2)} m²<br>
         <em>Obs.: Caso sua largura ou comprimento estejam incorretos, me avise para refazer os cálculos! 😊</em>
       `;
+
+      // Mostrar seção de resultados
+      document.getElementById("resultado").classList.remove("hidden");
     }
 
     // Função para gerar número de pedido crescente
@@ -356,7 +418,7 @@
 
       // Adicionar logotipo no canto superior esquerdo
       const logoUrl = "https://gabriellemoreira.com.br/wp-content/uploads/2025/02/braco-forte.jpeg";
-      const logoWidth = 30; // Reduzi o tamanho para caber melhor no PDF
+      const logoWidth = 30;
       const logoHeight = 15;
       doc.addImage(logoUrl, "JPEG", 10, 10, logoWidth, logoHeight);
 
@@ -405,43 +467,47 @@
         return;
       }
 
-      const numeroPedido = gerarNumeroPedido();
-      const areaTotal = document.getElementById("areaTotal").textContent;
-      const quantidadeTelhas = document.getElementById("quantidadeTelhas").textContent;
-      const valorTotal = document.getElementById("valorTotal").textContent;
-      const tipoCobertura = document.getElementById("tipoCobertura").options[document.getElementById("tipoCobertura").selectedIndex].text;
-      const tipoTelha = document.getElementById("tipoTelha").options[document.getElementById("tipoTelha").selectedIndex].text;
+      if (!document.getElementById("resultado").classList.contains("hidden")) {
+        const numeroPedido = gerarNumeroPedido();
+        const areaTotal = document.getElementById("areaTotal").textContent;
+        const quantidadeTelhas = document.getElementById("quantidadeTelhas").textContent;
+        const valorTotal = document.getElementById("valorTotal").textContent;
+        const tipoCobertura = document.getElementById("tipoCobertura").options[document.getElementById("tipoCobertura").selectedIndex].text;
+        const tipoTelha = document.getElementById("tipoTelha").options[document.getElementById("tipoTelha").selectedIndex].text;
 
-      // Montar mensagem
-      let mensagem = `*Orçamento de Coberturas*\n\n`;
-      mensagem += `Boa tarde, segue meu orçamento, fico no aguardo da resposta para fecharmos negócio:\n\n`;
-      mensagem += `*Nome do Cliente:* ${nomeCliente}\n`;
-      mensagem += `*Telefone:* ${telefoneCliente}\n\n`;
-      mensagem += `*Número do Pedido:* ${numeroPedido}\n`;
-      mensagem += `*Detalhes do Orçamento:*\n`;
-      mensagem += `- Tipo de Cobertura: ${tipoCobertura}\n`;
-      mensagem += `- Tipo de Telha: ${tipoTelha}\n`;
-      mensagem += `- Área do telhado: ${areaTotal} m²\n`;
-      mensagem += `- Quantidade de telhas: ${quantidadeTelhas}\n`;
-      mensagem += `- Valor total: R$ ${valorTotal}\n\n`;
-      mensagem += `----------------------------\n`;
-      mensagem += `*DADOS DA COTADA:*\n`;
-      mensagem += `EMPRESA DE COBERTURAS DE AÇOS DO KELVYN\n`;
-      mensagem += `Rua Doutor Lucio Machado 15, São João de Meriti\n`;
-      mensagem += `Orçamentos: (21) 98130-4519 grátis!\n`;
-      mensagem += `Instagram: @bracofortecoberturas`;
+        // Montar mensagem
+        let mensagem = `*Orçamento de Coberturas*\n\n`;
+        mensagem += `Boa tarde, segue meu orçamento, fico no aguardo da resposta para fecharmos negócio:\n\n`;
+        mensagem += `*Nome do Cliente:* ${nomeCliente}\n`;
+        mensagem += `*Telefone:* ${telefoneCliente}\n\n`;
+        mensagem += `*Número do Pedido:* ${numeroPedido}\n`;
+        mensagem += `*Detalhes do Orçamento:*\n`;
+        mensagem += `- Tipo de Cobertura: ${tipoCobertura}\n`;
+        mensagem += `- Tipo de Telha: ${tipoTelha}\n`;
+        mensagem += `- Área do telhado: ${areaTotal} m²\n`;
+        mensagem += `- Quantidade de telhas: ${quantidadeTelhas}\n`;
+        mensagem += `- Valor total: R$ ${valorTotal}\n\n`;
+        mensagem += `----------------------------\n`;
+        mensagem += `*DADOS DA COTADA:*\n`;
+        mensagem += `EMPRESA DE COBERTURAS DE AÇOS DO KELVYN\n`;
+        mensagem += `Rua Doutor Lucio Machado 15, São João de Meriti\n`;
+        mensagem += `Orçamentos: (21) 98130-4519 grátis!\n`;
+        mensagem += `Instagram: @bracofortecoberturas`;
 
-      // Codificar a mensagem para URL
-      const mensagemCodificada = encodeURIComponent(mensagem);
-      
-      // Número de WhatsApp da empresa
-      const numeroWhatsApp = "5521981304519";
-      
-      // Criar link do WhatsApp
-      const urlWhatsApp = `https://wa.me/${numeroWhatsApp}?text=${mensagemCodificada}`;
-      
-      // Abrir WhatsApp em nova aba
-      window.open(urlWhatsApp, '_blank');
+        // Codificar a mensagem para URL
+        const mensagemCodificada = encodeURIComponent(mensagem);
+        
+        // Número de WhatsApp da empresa
+        const numeroWhatsApp = "5521981304519";
+        
+        // Criar link do WhatsApp
+        const urlWhatsApp = `https://wa.me/${numeroWhatsApp}?text=${mensagemCodificada}`;
+        
+        // Abrir WhatsApp em nova aba
+        window.open(urlWhatsApp, '_blank');
+      } else {
+        alert("Por favor, calcule o orçamento antes de enviar.");
+      }
     }
   </script>
 </body>
